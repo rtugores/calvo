@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/calvo"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.50"
+        android:contentDescription="@string/foto"
+        android:src="@drawable/calvo" />
+    
+	 <TextView
+	     android:id="@+id/Bienvenida"
+	     android:layout_width="match_parent"
+	     android:layout_height="wrap_content"
+	     android:layout_marginBottom="10dp"
+	     android:background="#3A6EA5"
+	     android:text="@string/bienvenida"
+	     android:textColor="#FFFFFF"
+	     android:textSize="20sp"
+	     android:textStyle="bold" />
+	 
+	  <com.google.ads.AdView
+         android:id="@+id/adView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         ads:adSize="BANNER"
+         ads:adUnitId="a1527fcc4254d59"
+         ads:loadAdOnCreate="true" >
+      </com.google.ads.AdView>	 
+	 
+</LinearLayout>

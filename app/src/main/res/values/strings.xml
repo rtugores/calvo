@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Frota al calvo</string>
+    <string name="menu_share">Compartir</string>
+    <string name="menu_info">Información</string>
+    <string name="foto">foto</string>
+    <string name="bienvenida"></string>
+
+</resources>
