@@ -18,19 +18,11 @@
 	     android:layout_width="match_parent"
 	     android:layout_height="wrap_content"
 	     android:layout_marginBottom="10dp"
+         android:gravity="center_vertical|center_horizontal"
 	     android:background="#3A6EA5"
 	     android:text="@string/bienvenida"
 	     android:textColor="#FFFFFF"
 	     android:textSize="20sp"
 	     android:textStyle="bold" />
-	 
-	  <com.google.ads.AdView
-         android:id="@+id/adView"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         ads:adSize="BANNER"
-         ads:adUnitId="a1527fcc4254d59"
-         ads:loadAdOnCreate="true" >
-      </com.google.ads.AdView>	 
 	 
 </LinearLayout>

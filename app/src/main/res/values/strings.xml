@@ -5,6 +5,45 @@
     <string name="menu_share">Compartir</string>
     <string name="menu_info">Información</string>
     <string name="foto">foto</string>
-    <string name="bienvenida"></string>
+
+    <!-- CONSEJOS -->
+    <string name="bienvenida">Frótame la calva, amigo</string>
+
+    <string name="c0">Da un paseo y despéjate un poco</string>
+    <string name="c1">Llama a un familiar y pregúntale qué tal el día</string>
+    <string name="c2">Cómprate unas regalices</string>
+    <string name="c3">Mira si hacen algo por la tele</string>
+    <string name="c4">Sal a hacer un poco de ejercicio</string>
+    <string name="c5">Intenta dormir más esta noche</string>
+    <string name="c6">Relájate dándote un baño</string>
+    <string name="c7">Mira por la ventana y sonríe</string>
+    <string name="c8">Ve a la bolera más cercana y juega una partida</string>
+    <string name="c9">Afronta alguno de tus miedos</string>
+    <string name="c10">Comparte una anécdota tuya con alguien</string>
+    <string name="c11">Conoce a alguien interesante</string>
+    <string name="c12">Limpia y ordena tu habitación</string>
+    <string name="c13">Charla un poco con alguno de tus amigos</string>
+    <string name="c14">Mira ropa en algún centro comercial</string>
+    <string name="c15">Lee un libro en el parque</string>
+    <string name="c16">Búscate a alguien para ir al cine</string>
+    <string name="c17">Lee el periódico</string>
+    <string name="c18">Duerme una siesta</string>
+    <string name="c19">Visita algún museo cercano</string>
+    <string name="c20">Acércate hasta el bar de abajo de casa</string>
+    <string name="c21">Visita alguna biblioteca pública</string>
+    <string name="c22">Escribe un artículo o un relato</string>
+    <string name="c23">Ve a nadar</string>
+    <string name="c24">Aprende sobre los árboles y flores nativas de tu zona</string>
+    <string name="c25">Escucha la radio</string>
+    <string name="c26">Planea una salida al monte</string>
+    <string name="c27">Aprende a hacer mermeladas</string>
+    <string name="c28">Comienza un diario</string>
+    <string name="c29">Toma fotografías</string>
+    <string name="c30">Asiste a una obra de teatro</string>
+    <string name="c31">Haz un balance de tus gastos superfluos</string>
+    <string name="c32">Planifica tu dieta: organiza un menú equilibrado</string>
+    <string name="c33">Estudia cómo reducir el gasto energético en tu casa</string>
+
+    <string name="vuelve_manana">Vuelve mañana y te daré un nuevo consejo</string>
 
 </resources>
