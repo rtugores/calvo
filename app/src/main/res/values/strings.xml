@@ -2,12 +2,28 @@
 <resources>
 
     <string name="app_name">Frota al calvo</string>
-    <string name="menu_share">Compartir</string>
-    <string name="menu_info">Información</string>
-    <string name="foto">foto</string>
 
-    <!-- CONSEJOS -->
-    <string name="bienvenida">Frótame la calva, amigo</string>
+    <string name="menu_info">Información</string>
+    <string name="menu_share_title">Compartir</string>
+    <string name="menu_share_chooser">Compartir mediante</string>
+    <string name="menu_share_subject">¡Descarga "Frota al Calvo"!</string>
+    <string name="menu_share_text">El calvo de la aplicación "Frota al calvo" sí que sabe dar buenos consejos.
+        Está disponible en Google Play: https://play.google.com/store/apps/details?id=huitca1212.frotaalcalvo</string>
+    <string name="dialog_welcome">¡Bienvenido!</string>
+    <string name="dialog_welcome_text">¡Frótale la calva al calvo y te dará un consejo!
+        Recuerda que sólo da un consejo por día.</string>
+    <string name="dialog_info">Información</string>
+    <string name="dialog_info_text">Aplicación desarrollada por RJ Apps.
+        Para cualquier sugerencia, no dudes en contactar.</string>
+    <string name="dialog_info_contact">Contactar</string>
+    <string name="dialog_info_contact_text">Enviar mediante</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="email">huitca1212@gmail.com</string>
+
+    <!-- Advises -->
+    <string name="swipe_me">Frótame la calva, amigo</string>
+    <string name="come_tomorrow">Vuelve mañana y te daré un nuevo consejo</string>
 
     <string name="c0">Da un paseo y despéjate un poco</string>
     <string name="c1">Llama a un familiar y pregúntale qué tal el día</string>
@@ -43,7 +59,4 @@
     <string name="c31">Haz un balance de tus gastos superfluos</string>
     <string name="c32">Planifica tu dieta: organiza un menú equilibrado</string>
     <string name="c33">Estudia cómo reducir el gasto energético en tu casa</string>
-
-    <string name="vuelve_manana">Vuelve mañana y te daré un nuevo consejo</string>
-
 </resources>

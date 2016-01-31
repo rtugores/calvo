@@ -9,34 +9,34 @@ import android.view.View.OnTouchListener;
 
 public class OnSwipeTouchListener implements OnTouchListener {
 
-    private final GestureDetector gestureDetector;
+	private final GestureDetector gestureDetector;
 
-    public OnSwipeTouchListener(Context eso) {
-        gestureDetector = new GestureDetector(eso, new GestureListener());
-    }
+	public OnSwipeTouchListener(Context eso) {
+		gestureDetector = new GestureDetector(eso, new GestureListener());
+	}
 
-    public boolean onTouch(final View view, final MotionEvent motionEvent) {
-        return gestureDetector.onTouchEvent(motionEvent);
-    }
+	public boolean onTouch(final View view, final MotionEvent motionEvent) {
+		return gestureDetector.onTouchEvent(motionEvent);
+	}
 
-    private final class GestureListener extends SimpleOnGestureListener {
+	private final class GestureListener extends SimpleOnGestureListener {
 
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return true;
-        }
+		@Override
+		public boolean onDown(MotionEvent e) {
+			return true;
+		}
 
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            try {
-                onSwipe();
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-            return false;
-        }
-    } //END CLASS
+		@Override
+		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+			try {
+				onSwipe();
+			} catch (Exception exception) {
+				exception.printStackTrace();
+			}
+			return false;
+		}
+	}
 
-    public void onSwipe() {
-    }
+	public void onSwipe() {
+	}
 }
