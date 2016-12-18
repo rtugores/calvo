@@ -7,17 +7,16 @@
     <ImageView
         android:id="@+id/calvo"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="0.50"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/calvo" />
 
     <TextView
         android:id="@+id/text_display"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_height="56dp"
         android:background="#3A6EA5"
-        android:gravity="center_vertical|center_horizontal"
+        android:gravity="center"
         android:text="@string/swipe_me"
         android:textColor="#FFFFFF"
         android:textSize="20sp"

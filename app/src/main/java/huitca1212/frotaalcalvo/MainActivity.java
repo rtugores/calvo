@@ -13,9 +13,7 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.util.Date;
 
-
 public class MainActivity extends AppCompatActivity {
-
 	private int sentenceNumber;
 	private String[] sentenceArray;
 
@@ -23,8 +21,9 @@ public class MainActivity extends AppCompatActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		TextView textView = (TextView)findViewById(R.id.text_display);
-		ImageView imageView = (ImageView)findViewById(R.id.calvo);
+
+		TextView textView = (TextView) findViewById(R.id.text_display);
+		ImageView imageView = (ImageView) findViewById(R.id.calvo);
 
 		sentenceArray = new String[]{
 				getString(R.string.c0),
@@ -63,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
 				getString(R.string.c33),
 		};
 
-		boolean firstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun", true);
-		if (firstRun) {
+		if (getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun", true)) {
 			Utils.showInitDialog(this);
 			getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("firstrun", false).commit();
 		}
@@ -88,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
 					mpRes = MediaPlayer.create(getApplicationContext(), R.raw.new_advise);
 					mpRes.start();
 					if (sentenceNumber == -1) {
-						sentenceNumber = (int)(Math.random() * (sentenceArray.length + 1)); //primera vez comienza en número aleatorio
-						TextView textView = (TextView)findViewById(R.id.text_display);
+						sentenceNumber = (int) (Math.random() * (sentenceArray.length + 1)); //primera vez comienza en número aleatorio
+						TextView textView = (TextView) findViewById(R.id.text_display);
 						textView.setText(sentenceArray[sentenceNumber]); //si es el veinte, vuelve a empezar
 						textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
 						getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("dateant", currentDate).commit();
@@ -97,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 					}
 					if (sentenceNumber == sentenceArray.length) {
 						sentenceNumber = 0;
-						TextView textView = (TextView)findViewById(R.id.text_display);
+						TextView textView = (TextView) findViewById(R.id.text_display);
 						textView.setText(sentenceArray[sentenceNumber]); //si es el veinte, vuelve a empezar
 						textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
 						getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("dateant", currentDate).commit();
@@ -105,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 					}
 					if (sentenceNumber != -1 && sentenceNumber != sentenceArray.length) {
 						sentenceNumber++;
-						TextView textView = (TextView)findViewById(R.id.text_display);
+						TextView textView = (TextView) findViewById(R.id.text_display);
 						textView.setText(sentenceArray[sentenceNumber]); //si es el veinte, vuelve a empezar
 						textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
 						getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("dateant", currentDate).commit();
