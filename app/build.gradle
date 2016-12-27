@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "huitca1212.frotaalcalvo"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 8
         versionName "1.3"
@@ -22,4 +22,11 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:25.1.0'
     compile "com.android.support:appcompat-v7:25.1.0"
+
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.google.code.gson:gson:2.6.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
 }

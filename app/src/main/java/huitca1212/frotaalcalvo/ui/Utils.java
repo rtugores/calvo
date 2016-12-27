@@ -1,10 +1,12 @@
-package huitca1212.frotaalcalvo;
+package huitca1212.frotaalcalvo.ui;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
+
+import huitca1212.frotaalcalvo.R;
 
 public class Utils {
 
@@ -19,19 +21,6 @@ public class Utils {
 		intent.putExtra(Intent.EXTRA_SUBJECT, ctx.getString(R.string.menu_share_subject));
 		intent.putExtra(Intent.EXTRA_TEXT, ctx.getString(R.string.menu_share_text));
 		ctx.startActivity(Intent.createChooser(intent, ctx.getString(R.string.menu_share_chooser)));
-	}
-
-	public static void showInitDialog(Context ctx) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-		builder.setTitle(R.string.dialog_welcome);
-		builder.setMessage(R.string.dialog_welcome_text);
-		builder.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-			}
-		});
-		builder.create().show();
 	}
 
 	public static void showInfoApp(final Context ctx) {

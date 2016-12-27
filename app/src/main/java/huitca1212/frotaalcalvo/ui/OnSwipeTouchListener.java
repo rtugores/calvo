@@ -1,18 +1,19 @@
-package huitca1212.frotaalcalvo;
+package huitca1212.frotaalcalvo.ui;
 
-import android.content.Context;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-public class OnSwipeTouchListener implements OnTouchListener {
+import huitca1212.frotaalcalvo.BaldApplication;
+
+public abstract class OnSwipeTouchListener implements OnTouchListener {
 
 	private final GestureDetector gestureDetector;
 
-	public OnSwipeTouchListener(Context eso) {
-		gestureDetector = new GestureDetector(eso, new GestureListener());
+	public OnSwipeTouchListener() {
+		gestureDetector = new GestureDetector(BaldApplication.getInstance(), new GestureListener());
 	}
 
 	public boolean onTouch(final View view, final MotionEvent motionEvent) {
@@ -20,7 +21,6 @@ public class OnSwipeTouchListener implements OnTouchListener {
 	}
 
 	private final class GestureListener extends SimpleOnGestureListener {
-
 		@Override
 		public boolean onDown(MotionEvent e) {
 			return true;
@@ -28,15 +28,10 @@ public class OnSwipeTouchListener implements OnTouchListener {
 
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-			try {
-				onSwipe();
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
+			onSwipe();
 			return false;
 		}
 	}
 
-	public void onSwipe() {
-	}
+	public abstract void onSwipe();
 }
