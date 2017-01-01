@@ -16,7 +16,8 @@ import huitca1212.frotaalcalvo.business.AllBusinessListener;
 public class AdvicesActivity extends BaseActivity {
 	private static final String ADVICE_TYPE = "adviceType";
 	private static final String PREFERENCE_NAME = "preference";
-	private static final String ADVICE_NUMBER = "adviceNumber";
+	private static final String DAILY_ADVICE_NUMBER = "dailyAdviceNumber";
+	private static final String LOVE_ADVICE_NUMBER = "loveAdviceNumber";
 
 	private TextView adviceText;
 	private View loadingBar;
@@ -60,7 +61,7 @@ public class AdvicesActivity extends BaseActivity {
 		baldManImage.setOnTouchListener(onSwipeTouchListener);
 
 		sharedPreferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
-		adviceNumber = sharedPreferences.getInt(ADVICE_NUMBER, 0);
+		adviceNumber = sharedPreferences.getInt(getPreferenceFieldByAdviceType(), 0);
 	}
 
 	@Override
@@ -102,7 +103,7 @@ public class AdvicesActivity extends BaseActivity {
 
 	private void updateAdvice() {
 		adviceText.setText(advices.get(adviceNumber));
-		sharedPreferences.edit().putInt(ADVICE_NUMBER, adviceNumber).apply();
+		sharedPreferences.edit().putInt(getPreferenceFieldByAdviceType(), adviceNumber).apply();
 	}
 
 	private void showLoader() {
@@ -115,5 +116,9 @@ public class AdvicesActivity extends BaseActivity {
 		loadingBar.setVisibility(View.GONE);
 		adviceText.setVisibility(View.VISIBLE);
 		isGettingAdvices = false;
+	}
+
+	private String getPreferenceFieldByAdviceType() {
+		return adviceType.equals(AdvicesBusiness.DAILY_ADVICES) ? DAILY_ADVICE_NUMBER : LOVE_ADVICE_NUMBER;
 	}
 }

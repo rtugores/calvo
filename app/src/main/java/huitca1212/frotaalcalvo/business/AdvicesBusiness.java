@@ -16,10 +16,11 @@ import retrofit2.Response;
 public class AdvicesBusiness {
 	public static final String DAILY_ADVICES = "dailyAdvices";
 	public static final String LOVE_ADVICES = "loveAdvices";
+	private static String adviceType;
 	private static RuntimeExceptionDao<Advices, Integer> advicesDao;
 
-	public static void getAdvices(final String adviceType, final AllBusinessListener<CircularList<String>> listener) {
-		//TODO: adviceType is not working yet and needs a refactor
+	public static void getAdvices(final String type, final AllBusinessListener<CircularList<String>> listener) {
+		adviceType = type;
 		getAdvicesFromDatabase(new AllBusinessListener<CircularList<String>>(listener) {
 			@Override
 			public void onDatabaseSuccess(CircularList<String> object) {
@@ -30,7 +31,7 @@ public class AdvicesBusiness {
 						listener.onDatabaseSuccess(new CircularList<String>());
 					}
 				}
-				getAdvicesFromBackend(adviceType, listener);
+				getAdvicesFromBackend(listener);
 			}
 		});
 	}
@@ -43,7 +44,7 @@ public class AdvicesBusiness {
 				ArrayList<Advices> advices = (ArrayList<Advices>) advicesDao.queryBuilder().query();
 
 				if (advices != null && !advices.isEmpty()) {
-					return advices.get(0).getAdvices();
+					return getAdvicesFromObject(advices.get(0));
 				} else {
 					return new CircularList<>();
 				}
@@ -51,26 +52,33 @@ public class AdvicesBusiness {
 		}.execute();
 	}
 
-	private static void getAdvicesFromBackend(String adviceType, final AllBusinessListener<CircularList<String>> listener) {
+	private static void getAdvicesFromBackend(final AllBusinessListener<CircularList<String>> listener) {
 		AdvicesService advicesService = ApiUtils.getAdvicesService();
 		Call<Advices> advicesCall;
-		if (adviceType.equals(DAILY_ADVICES)) {
-			advicesCall = advicesService.getDailyAdvices();
-		} else {
-			advicesCall = advicesService.getLoveAdvices();
-		}
+		advicesCall = advicesService.getAdvices();
 		advicesCall.enqueue(new Callback<Advices>() {
 			@Override
-			public void onResponse(Call<Advices> call, Response<Advices> response) {
-				advicesDao.createOrUpdate(response.body());
-				if (listener != null) {
-					if (response.isSuccessful()) {
-						listener.onServerSuccess(response.body().getAdvices());
-					} else {
-						listener.onFailure(new Exception());
+			public void onResponse(Call<Advices> call, final Response<Advices> response) {
+				AllBusinessListener<Object> databaseListener = new AllBusinessListener<Object>() {
+					@Override
+					public void onDatabaseSuccess(Object object) {
+						if (listener != null) {
+							if (response.isSuccessful()) {
+								listener.onServerSuccess(getAdvicesFromObject(response.body()));
+							} else {
+								listener.onFailure(new Exception());
+							}
+							listener.onFinish();
+						}
 					}
-					listener.onFinish();
-				}
+				};
+				new DefaultAsyncTask<String, Object>(databaseListener) {
+					@Override
+					protected Object dbOperation(String... params) throws SQLException {
+						advicesDao.createOrUpdate(response.body());
+						return null;
+					}
+				}.execute();
 			}
 
 			@Override
@@ -81,5 +89,9 @@ public class AdvicesBusiness {
 				}
 			}
 		});
+	}
+
+	private static CircularList<String> getAdvicesFromObject(Advices object) {
+		return adviceType.equals(DAILY_ADVICES) ? object.getDailyAdvices() : object.getLoveAdvices();
 	}
 }

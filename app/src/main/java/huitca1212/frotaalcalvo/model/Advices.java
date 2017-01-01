@@ -10,12 +10,15 @@ import huitca1212.frotaalcalvo.ui.CircularList;
 
 @DatabaseTable
 public class Advices {
-
-	@DatabaseField(id = true, columnName = "id", canBeNull = false) private Integer id;
+	@DatabaseField(id = true) private Integer id = 1;
 	@DatabaseField(dataType = DataType.SERIALIZABLE) @SerializedName("dailyAdvices") private CircularList<String> dailyAdvices;
 	@DatabaseField(dataType = DataType.SERIALIZABLE) @SerializedName("loveAdvices") private CircularList<String> loveAdvices;
 
-	public CircularList<String> getAdvices() {
-		return dailyAdvices != null ? dailyAdvices : loveAdvices;
+	public CircularList<String> getDailyAdvices() {
+		return dailyAdvices;
+	}
+
+	public CircularList<String> getLoveAdvices() {
+		return loveAdvices;
 	}
 }

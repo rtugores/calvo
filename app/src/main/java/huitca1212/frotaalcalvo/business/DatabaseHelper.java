@@ -20,7 +20,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private static final String DATABASE_NAME = "dbAdvices";
 
 	private static DatabaseHelper databaseHelper;
-	private RuntimeExceptionDao<Advices, Integer> advicesDao;
+	private static RuntimeExceptionDao<Advices, Integer> advicesDao;
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, 1);

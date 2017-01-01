@@ -9,6 +9,9 @@ public abstract class DefaultAsyncTask <String, T> extends AsyncTask<String, Voi
 	private Exception exception;
 	private AllBusinessListener listener;
 
+	public DefaultAsyncTask() {
+	}
+
 	public DefaultAsyncTask(AllBusinessListener<T> listener) {
 		this.listener = listener;
 	}
