@@ -8,4 +8,7 @@ public interface AdvicesService {
 
 	@GET("advices.json")
 	Call<Advices> getAdvices();
+
+	@GET("loveAdvices.json")
+	Call<Advices> getLoveAdvices();
 }

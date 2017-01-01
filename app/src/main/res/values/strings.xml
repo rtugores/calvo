@@ -23,5 +23,7 @@
 
     <string name="swipe_me">Frótame la calva, amigo!</string>
     <string name="no_internet">Sin Internet no te puedo dar un consejo :(</string>
+    <string name="daily_advices">Consejos para el día a día</string>
+    <string name="love_advices">Consejos para una cita</string>
 
 </resources>

@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +13,8 @@ import huitca1212.frotaalcalvo.R;
 import huitca1212.frotaalcalvo.business.AdvicesBusiness;
 import huitca1212.frotaalcalvo.business.AllBusinessListener;
 
-public class AdvicesActivity extends AppCompatActivity {
+public class AdvicesActivity extends BaseActivity {
+	private static final String ADVICE_TYPE = "adviceType";
 	private static final String PREFERENCE_NAME = "preference";
 	private static final String ADVICE_NUMBER = "adviceNumber";
 
@@ -25,6 +24,7 @@ public class AdvicesActivity extends AppCompatActivity {
 	private CircularList<String> advices = new CircularList<>();
 	private int adviceNumber;
 	private boolean isGettingAdvices;
+	private String adviceType;
 	private OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener() {
 		@Override
 		public void onSwipe() {
@@ -37,8 +37,9 @@ public class AdvicesActivity extends AppCompatActivity {
 		}
 	};
 
-	public static void startActivity(Activity activity) {
+	public static void startActivity(Activity activity, String adviceType) {
 		Intent intent = new Intent(activity, AdvicesActivity.class);
+		intent.putExtra(ADVICE_TYPE, adviceType);
 		activity.startActivity(intent);
 	}
 
@@ -46,6 +47,12 @@ public class AdvicesActivity extends AppCompatActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_advices);
+		ActionBar actionBar = getSupportActionBar();
+		if (actionBar != null) {
+			actionBar.setDisplayHomeAsUpEnabled(true);
+		}
+		adviceType = getIntent().getStringExtra(ADVICE_TYPE);
+		setTitle(adviceType.equals("advice") ? R.string.daily_advices : R.string.love_advices);
 
 		adviceText = (TextView) findViewById(R.id.advice_text);
 		loadingBar = findViewById(R.id.loading_bar);
@@ -64,7 +71,7 @@ public class AdvicesActivity extends AppCompatActivity {
 
 	private void getAdvices() {
 		showLoader();
-		AdvicesBusiness.getAdvices(new AllBusinessListener<CircularList<String>>() {
+		AdvicesBusiness.getAdvices(adviceType, new AllBusinessListener<CircularList<String>>() {
 			@Override
 			public void onDatabaseSuccess(CircularList<String> object) {
 				if (!object.isEmpty()) {
@@ -108,24 +115,5 @@ public class AdvicesActivity extends AppCompatActivity {
 		loadingBar.setVisibility(View.GONE);
 		adviceText.setVisibility(View.VISIBLE);
 		isGettingAdvices = false;
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.menu_share:
-				Utils.shareApp(this);
-				return true;
-			case R.id.menu_info:
-				Utils.showInfoApp(this);
-				return true;
-		}
-		return true;
 	}
 }

@@ -17,7 +17,8 @@ public class AdvicesBusiness {
 
 	private static RuntimeExceptionDao<Advices, Integer> advicesDao;
 
-	public static void getAdvices(final AllBusinessListener<CircularList<String>> listener) {
+	public static void getAdvices(final String adviceType, final AllBusinessListener<CircularList<String>> listener) {
+		//TODO: adviceType is not working yet and needs a refactor
 		getAdvicesFromDatabase(new AllBusinessListener<CircularList<String>>(listener) {
 			@Override
 			public void onDatabaseSuccess(CircularList<String> object) {
@@ -28,7 +29,7 @@ public class AdvicesBusiness {
 						listener.onDatabaseSuccess(new CircularList<String>());
 					}
 				}
-				getAdvicesFromBackend(listener);
+				getAdvicesFromBackend(adviceType, listener);
 			}
 		});
 	}
@@ -49,9 +50,15 @@ public class AdvicesBusiness {
 		}.execute();
 	}
 
-	private static void getAdvicesFromBackend(final AllBusinessListener<CircularList<String>> listener) {
+	private static void getAdvicesFromBackend(String adviceType, final AllBusinessListener<CircularList<String>> listener) {
 		AdvicesService advicesService = ApiUtils.getAdvicesService();
-		advicesService.getAdvices().enqueue(new Callback<Advices>() {
+		Call<Advices> advicesCall;
+		if (adviceType.equals("advices")) {
+			advicesCall = advicesService.getAdvices();
+		} else {
+			advicesCall = advicesService.getLoveAdvices();
+		}
+		advicesCall.enqueue(new Callback<Advices>() {
 			@Override
 			public void onResponse(Call<Advices> call, Response<Advices> response) {
 				advicesDao.createOrUpdate(response.body());

@@ -17,11 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#3A6EA5"
+        android:background="@color/blue"
         android:gravity="center"
         android:minHeight="@dimen/default_height"
         android:padding="@dimen/side_margin"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="gone"
@@ -33,8 +33,7 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="#3A6EA5"
+        android:background="@color/blue"
         android:indeterminate="true"
         android:padding="@dimen/side_margin" />
-
 </RelativeLayout>
