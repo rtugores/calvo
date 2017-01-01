@@ -24,13 +24,14 @@ public class AdvicesActivity extends AppCompatActivity {
 	private SharedPreferences sharedPreferences;
 	private CircularList<String> advices = new CircularList<>();
 	private int adviceNumber;
+	private boolean isGettingAdvices;
 	private OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener() {
 		@Override
 		public void onSwipe() {
 			if (!advices.isEmpty()) {
 				adviceNumber++;
 				updateAdvice();
-			} else {
+			} else if (!isGettingAdvices) {
 				getAdvices();
 			}
 		}
@@ -100,11 +101,13 @@ public class AdvicesActivity extends AppCompatActivity {
 	private void showLoader() {
 		loadingBar.setVisibility(View.VISIBLE);
 		adviceText.setVisibility(View.GONE);
+		isGettingAdvices = true;
 	}
 
 	private void hideLoader() {
 		loadingBar.setVisibility(View.GONE);
 		adviceText.setVisibility(View.VISIBLE);
+		isGettingAdvices = false;
 	}
 
 	@Override

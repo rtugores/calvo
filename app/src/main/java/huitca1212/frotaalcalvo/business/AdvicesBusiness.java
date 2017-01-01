@@ -2,8 +2,6 @@ package huitca1212.frotaalcalvo.business;
 
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
-import android.util.Log;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -20,25 +18,17 @@ public class AdvicesBusiness {
 	private static RuntimeExceptionDao<Advices, Integer> advicesDao;
 
 	public static void getAdvices(final AllBusinessListener<CircularList<String>> listener) {
-		getAdvicesFromDatabase(new AllBusinessListener<CircularList<String>>() {
+		getAdvicesFromDatabase(new AllBusinessListener<CircularList<String>>(listener) {
 			@Override
 			public void onDatabaseSuccess(CircularList<String> object) {
-				if (object != null && !object.isEmpty()) {
-					listener.onDatabaseSuccess(object);
-				} else {
-					listener.onDatabaseSuccess(new CircularList<String>());
+				if (listener != null) {
+					if (object != null && !object.isEmpty()) {
+						listener.onDatabaseSuccess(object);
+					} else {
+						listener.onDatabaseSuccess(new CircularList<String>());
+					}
 				}
 				getAdvicesFromBackend(listener);
-			}
-
-			@Override
-			public void onFinish() {
-				super.onFinish();
-			}
-
-			@Override
-			public void onFailure(Exception e) {
-				Log.e("AdvicesBusiness", "Error in DB", e);
 			}
 		});
 	}
@@ -71,6 +61,7 @@ public class AdvicesBusiness {
 					} else {
 						listener.onFailure(new Exception());
 					}
+					listener.onFinish();
 				}
 			}
 
@@ -78,6 +69,7 @@ public class AdvicesBusiness {
 			public void onFailure(Call<Advices> call, Throwable t) {
 				if (listener != null) {
 					listener.onFailure(new Exception());
+					listener.onFinish();
 				}
 			}
 		});
