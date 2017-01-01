@@ -5,9 +5,8 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface AdvicesService {
-
-	@GET("advices.json")
-	Call<Advices> getAdvices();
+	@GET("dailyAdvices.json")
+	Call<Advices> getDailyAdvices();
 
 	@GET("loveAdvices.json")
 	Call<Advices> getLoveAdvices();

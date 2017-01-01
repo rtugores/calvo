@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import huitca1212.frotaalcalvo.R;
+import huitca1212.frotaalcalvo.business.AdvicesBusiness;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -21,9 +22,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 	public void onClick(View view) {
 		int id = view.getId();
 		if (id == R.id.day_to_day_advice_advice) {
-			AdvicesActivity.startActivity(this, "advice");
+			AdvicesActivity.startActivity(this, AdvicesBusiness.DAILY_ADVICES);
 		} else if (id == R.id.love_advice_text) {
-			AdvicesActivity.startActivity(this, "loveAdvice");
+			AdvicesActivity.startActivity(this, AdvicesBusiness.LOVE_ADVICES);
 		}
 	}
 }

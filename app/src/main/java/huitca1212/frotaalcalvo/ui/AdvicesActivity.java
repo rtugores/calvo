@@ -52,7 +52,7 @@ public class AdvicesActivity extends BaseActivity {
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 		adviceType = getIntent().getStringExtra(ADVICE_TYPE);
-		setTitle(adviceType.equals("advice") ? R.string.daily_advices : R.string.love_advices);
+		setTitle(adviceType.equals(AdvicesBusiness.DAILY_ADVICES) ? R.string.daily_advices : R.string.love_advices);
 
 		adviceText = (TextView) findViewById(R.id.advice_text);
 		loadingBar = findViewById(R.id.loading_bar);

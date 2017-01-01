@@ -14,7 +14,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AdvicesBusiness {
-
+	public static final String DAILY_ADVICES = "dailyAdvices";
+	public static final String LOVE_ADVICES = "loveAdvices";
 	private static RuntimeExceptionDao<Advices, Integer> advicesDao;
 
 	public static void getAdvices(final String adviceType, final AllBusinessListener<CircularList<String>> listener) {
@@ -53,8 +54,8 @@ public class AdvicesBusiness {
 	private static void getAdvicesFromBackend(String adviceType, final AllBusinessListener<CircularList<String>> listener) {
 		AdvicesService advicesService = ApiUtils.getAdvicesService();
 		Call<Advices> advicesCall;
-		if (adviceType.equals("advices")) {
-			advicesCall = advicesService.getAdvices();
+		if (adviceType.equals(DAILY_ADVICES)) {
+			advicesCall = advicesService.getDailyAdvices();
 		} else {
 			advicesCall = advicesService.getLoveAdvices();
 		}
