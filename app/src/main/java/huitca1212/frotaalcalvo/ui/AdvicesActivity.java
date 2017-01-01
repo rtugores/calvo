@@ -58,6 +58,7 @@ public class AdvicesActivity extends BaseActivity {
 		adviceText = (TextView) findViewById(R.id.advice_text);
 		loadingBar = findViewById(R.id.loading_bar);
 		ImageView baldManImage = (ImageView) findViewById(R.id.bald_man_image);
+		baldManImage.setImageResource(adviceType.equals(AdvicesBusiness.DAILY_ADVICES) ? R.drawable.bald_man : R.drawable.bald_man_love);
 		baldManImage.setOnTouchListener(onSwipeTouchListener);
 
 		sharedPreferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);

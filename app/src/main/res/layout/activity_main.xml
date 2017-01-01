@@ -20,7 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/title"
-        android:scaleType="centerCrop"
+        android:background="@color/blue"
+        android:padding="@dimen/side_margin"
+        android:scaleType="fitCenter"
         android:src="@drawable/bald_man_blur" />
 
     <LinearLayout
@@ -37,6 +39,7 @@
             android:layout_margin="@dimen/side_margin"
             android:background="@color/purple"
             android:gravity="center"
+            android:minHeight="@dimen/default_height"
             android:padding="@dimen/side_margin"
             android:text="@string/daily_advices"
             android:textColor="@color/white"
@@ -49,6 +52,7 @@
             android:layout_margin="@dimen/side_margin"
             android:background="@color/purple"
             android:gravity="center"
+            android:minHeight="@dimen/default_height"
             android:padding="@dimen/side_margin"
             android:text="@string/love_advices"
             android:textColor="@color/white"

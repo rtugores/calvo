@@ -9,8 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/default_height"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bald_man" />
+        android:background="@color/brown"
+        android:padding="@dimen/side_margin"
+        android:scaleType="fitCenter"
+        tools:src="@drawable/bald_man" />
 
     <TextView
         android:id="@+id/advice_text"
