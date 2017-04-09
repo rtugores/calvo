@@ -5,11 +5,16 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/landscape" />
+
+    <ImageView
         android:id="@+id/bald_man_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/default_height"
-        android:background="@color/brown"
         android:padding="@dimen/side_margin"
         android:scaleType="fitCenter"
         tools:src="@drawable/bald_man" />
@@ -19,12 +24,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/blue"
         android:gravity="center"
         android:minHeight="@dimen/default_height"
         android:padding="@dimen/side_margin"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:visibility="gone"
         tools:text="@string/swipe_me" />
@@ -35,7 +39,6 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/blue"
         android:indeterminate="true"
         android:padding="@dimen/side_margin" />
 </RelativeLayout>

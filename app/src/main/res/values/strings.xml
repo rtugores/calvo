@@ -7,8 +7,7 @@
     <string name="menu_share_title">Compartir</string>
     <string name="menu_share_chooser">Compartir mediante</string>
     <string name="menu_share_subject">¡Descarga "Frota al Calvo"!</string>
-    <string name="menu_share_text">El calvo de la aplicación "Frota al calvo" sí que sabe dar buenos consejos.
-        Está disponible en Google Play: https://play.google.com/store/apps/details?id=huitca1212.frotaalcalvo</string>
+    <string name="menu_share_text">El calvo de esta app sí que sabe dar buenos consejos: https://play.google.com/store/apps/details?id=huitca1212.frotaalcalvo</string>
     <string name="dialog_welcome">¡Bienvenido!</string>
     <string name="dialog_welcome_text">¡Frótale la calva al calvo y te dará un consejo!
         Recuerda que sólo da un consejo por día.</string>
@@ -21,16 +20,16 @@
     <string name="cancel">Cancelar</string>
     <string name="email">huitca1212@gmail.com</string>
 
-    <string name="swipe_me">Frótame la calva, amigo!</string>
+    <string name="swipe_me">¡Frótame la calva, amigo!</string>
     <string name="no_internet">Sin Internet no te puedo dar un consejo :(</string>
     <string name="daily_advices">Consejos para el día a día</string>
     <string name="love_advices">Consejos para una cita</string>
 
-    <string name="bother_1">Auch!</string>
-    <string name="bother_2">Para!</string>
-    <string name="bother_3">No!</string>
-    <string name="bother_4">Duele!</string>
-    <string name="bother_5">Mi cabeza!</string>
-    <string name="bother_6">Au!</string>
-    <string name="bother_7">Mis gafas!</string>
+    <string name="bother_1">¡Frótame!</string>
+    <string name="bother_2">¡Acaríciame!</string>
+    <string name="bother_3">¡No me golpees!</string>
+    <string name="bother_4">¡Trátame con cariño!</string>
+    <string name="bother_5">¡Auch!</string>
+    <string name="bother_6">¡Con cuidado!</string>
+    <string name="bother_7">¡Mi calva es delicada!</string>
 </resources>
