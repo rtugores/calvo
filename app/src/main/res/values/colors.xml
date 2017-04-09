@@ -3,6 +3,6 @@
     <item name="white" type="color">#FFFFFF</item>
     <item name="lightBlue" type="color">#C2E7FA</item>
     <item name="brown" type="color">#A5713A</item>
-    <item name="purple" type="color">#A53AA4</item>
-
+    <color name="light_purple">#AB47BC</color>
+    <color name="dark_purple">#9C27B0</color>
 </resources>

@@ -21,13 +21,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/side_margin"
-            android:background="@color/purple"
+            android:background="@drawable/d_button_purple"
             android:gravity="center"
             android:minHeight="@dimen/default_height"
             android:padding="@dimen/side_margin"
             android:text="@string/daily_advices"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -35,13 +35,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/side_margin"
-            android:background="@color/purple"
+            android:background="@drawable/d_button_purple"
             android:gravity="center"
             android:minHeight="@dimen/default_height"
             android:padding="@dimen/side_margin"
             android:text="@string/love_advices"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
 

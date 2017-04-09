@@ -7,6 +7,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:scaleType="centerCrop"
         android:src="@drawable/landscape" />
 
@@ -15,7 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/default_height"
-        android:padding="@dimen/side_margin"
+        android:paddingEnd="@dimen/side_margin"
+        android:paddingStart="@dimen/side_margin"
+        android:paddingTop="@dimen/side_margin"
         android:scaleType="fitCenter"
         tools:src="@drawable/bald_man" />
 
@@ -24,21 +29,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/side_margin"
+        android:layout_marginEnd="@dimen/side_margin"
+        android:layout_marginStart="@dimen/side_margin"
         android:gravity="center"
         android:minHeight="@dimen/default_height"
-        android:padding="@dimen/side_margin"
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
         android:visibility="gone"
-        tools:text="@string/swipe_me" />
+        tools:text="@string/swipe_me"
+        tools:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/loading_bar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/default_height"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/side_margin"
+        android:layout_marginEnd="@dimen/side_margin"
+        android:layout_marginStart="@dimen/side_margin"
         android:indeterminate="true"
-        android:padding="@dimen/side_margin" />
+        android:padding="@dimen/side_margin"
+        tools:visibility="gone" />
 </RelativeLayout>
