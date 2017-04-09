@@ -31,7 +31,15 @@ public abstract class OnSwipeTouchListener implements OnTouchListener {
 			onSwipe();
 			return false;
 		}
+
+		@Override
+		public boolean onSingleTapUp(MotionEvent e) {
+			onTap();
+			return false;
+		}
 	}
 
 	public abstract void onSwipe();
+
+	public abstract void onTap();
 }

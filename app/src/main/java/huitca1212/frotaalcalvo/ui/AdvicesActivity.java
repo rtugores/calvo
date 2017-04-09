@@ -8,6 +8,9 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Random;
 
 import huitca1212.frotaalcalvo.R;
 import huitca1212.frotaalcalvo.business.AdvicesBusiness;
@@ -26,6 +29,7 @@ public class AdvicesActivity extends BaseActivity {
 	private int adviceNumber;
 	private boolean isGettingAdvices;
 	private String adviceType;
+	private Integer botherSentences[];
 	private OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener() {
 		@Override
 		public void onSwipe() {
@@ -35,6 +39,12 @@ public class AdvicesActivity extends BaseActivity {
 			} else if (!isGettingAdvices) {
 				getAdvices();
 			}
+		}
+
+		@Override
+		public void onTap() {
+			int index = new Random().nextInt(botherSentences.length);
+			Toast.makeText(AdvicesActivity.this, getText(botherSentences[index]), Toast.LENGTH_SHORT).show();
 		}
 	};
 
@@ -54,6 +64,8 @@ public class AdvicesActivity extends BaseActivity {
 		}
 		adviceType = getIntent().getStringExtra(ADVICE_TYPE);
 		setTitle(adviceType.equals(AdvicesBusiness.DAILY_ADVICES) ? R.string.daily_advices : R.string.love_advices);
+
+		botherSentences = new Integer[]{R.string.bother_1, R.string.bother_2, R.string.bother_3, R.string.bother_4, R.string.bother_5, R.string.bother_6, R.string.bother_7};
 
 		adviceText = (TextView) findViewById(R.id.advice_text);
 		loadingBar = findViewById(R.id.loading_bar);

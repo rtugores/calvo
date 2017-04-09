@@ -26,4 +26,11 @@
     <string name="daily_advices">Consejos para el día a día</string>
     <string name="love_advices">Consejos para una cita</string>
 
+    <string name="bother_1">Auch!</string>
+    <string name="bother_2">Para!</string>
+    <string name="bother_3">No!</string>
+    <string name="bother_4">Duele!</string>
+    <string name="bother_5">Mi cabeza!</string>
+    <string name="bother_6">Au!</string>
+    <string name="bother_7">Mis gafas!</string>
 </resources>
