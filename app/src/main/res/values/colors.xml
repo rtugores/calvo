@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="white" type="color">#FFFFFF</item>
-    <item name="lightBlue" type="color">#C2E7FA</item>
-    <item name="brown" type="color">#A5713A</item>
+    <color name="white">#FFFFFF</color>
+    <color name="lightBlue">#C2E7FA</color>
+    <color name="brown">#A5713A</color>
     <color name="light_purple">#AB47BC</color>
     <color name="dark_purple">#9C27B0</color>
 </resources>

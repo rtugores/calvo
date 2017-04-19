@@ -1,5 +1,6 @@
 package huitca1212.frotaalcalvo.ui;
 
+import android.content.Context;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
@@ -12,10 +13,11 @@ public abstract class OnSwipeTouchListener implements OnTouchListener {
 
 	private final GestureDetector gestureDetector;
 
-	public OnSwipeTouchListener() {
-		gestureDetector = new GestureDetector(BaldApplication.getInstance(), new GestureListener());
+	public OnSwipeTouchListener(Context context) {
+		gestureDetector = new GestureDetector(context, new GestureListener());
 	}
 
+	@Override
 	public boolean onTouch(final View view, final MotionEvent motionEvent) {
 		return gestureDetector.onTouchEvent(motionEvent);
 	}

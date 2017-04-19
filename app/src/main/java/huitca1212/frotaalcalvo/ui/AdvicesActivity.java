@@ -1,5 +1,6 @@
 package huitca1212.frotaalcalvo.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,43 +11,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Random;
-
 import huitca1212.frotaalcalvo.R;
 import huitca1212.frotaalcalvo.business.AdvicesBusiness;
-import huitca1212.frotaalcalvo.business.AllBusinessListener;
 
 public class AdvicesActivity extends BaseActivity {
+
 	private static final String ADVICE_TYPE = "adviceType";
 	private static final String PREFERENCE_NAME = "preference";
-	private static final String DAILY_ADVICE_NUMBER = "dailyAdviceNumber";
-	private static final String LOVE_ADVICE_NUMBER = "loveAdviceNumber";
+
+	private AdvicesPresenter presenter;
+	private String adviceType;
 
 	private TextView adviceText;
 	private View loadingBar;
-	private SharedPreferences sharedPreferences;
-	private CircularList<String> advices = new CircularList<>();
-	private int adviceNumber;
-	private boolean isGettingAdvices;
-	private String adviceType;
-	private Integer botherSentences[];
-	private OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener() {
-		@Override
-		public void onSwipe() {
-			if (!advices.isEmpty()) {
-				adviceNumber++;
-				updateAdvice();
-			} else if (!isGettingAdvices) {
-				getAdvices();
-			}
-		}
-
-		@Override
-		public void onTap() {
-			int index = new Random().nextInt(botherSentences.length);
-			Toast.makeText(AdvicesActivity.this, getText(botherSentences[index]), Toast.LENGTH_SHORT).show();
-		}
-	};
 
 	public static void startActivity(Activity activity, String adviceType) {
 		Intent intent = new Intent(activity, AdvicesActivity.class);
@@ -57,81 +34,79 @@ public class AdvicesActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_advices);
-		ActionBar actionBar = getSupportActionBar();
-		if (actionBar != null) {
-			actionBar.setDisplayHomeAsUpEnabled(true);
-		}
+
 		adviceType = getIntent().getStringExtra(ADVICE_TYPE);
-		setTitle(adviceType.equals(AdvicesBusiness.DAILY_ADVICES) ? R.string.daily_advices : R.string.love_advices);
+		configureActionBar();
 
-		botherSentences = new Integer[]{R.string.bother_1, R.string.bother_2, R.string.bother_3, R.string.bother_4, R.string.bother_5, R.string.bother_6, R.string.bother_7};
+		presenter = new AdvicesPresenter(this);
 
-		adviceText = (TextView) findViewById(R.id.advice_text);
-		loadingBar = findViewById(R.id.loading_bar);
-		ImageView baldManImage = (ImageView) findViewById(R.id.bald_man_image);
-		baldManImage.setImageResource(adviceType.equals(AdvicesBusiness.DAILY_ADVICES) ? R.drawable.bald_man : R.drawable.bald_man_love);
-		baldManImage.setOnTouchListener(onSwipeTouchListener);
+		SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
+		String[] botherSentences = new String[]{getString(R.string.bother_1), getString(R.string.bother_2), getString(R.string.bother_3),
+				getString(R.string.bother_4), getString(R.string.bother_5), getString(R.string.bother_6), getString(R.string.bother_7)};
+		presenter.init(sharedPreferences, adviceType, botherSentences);
 
-		sharedPreferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
-		adviceNumber = sharedPreferences.getInt(getPreferenceFieldByAdviceType(), 0);
+		initViews();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		getAdvices();
+		presenter.retrieveAdvices(adviceType);
 	}
 
-	private void getAdvices() {
-		showLoader();
-		AdvicesBusiness.getAdvices(adviceType, new AllBusinessListener<CircularList<String>>() {
+	private void configureActionBar() {
+		ActionBar actionBar = getSupportActionBar();
+		if (actionBar != null) {
+			actionBar.setDisplayHomeAsUpEnabled(true);
+		}
+		setTitle(adviceType.equals(AdvicesBusiness.DAILY_ADVICES) ? R.string.daily_advices : R.string.love_advices);
+	}
+
+	private void initViews() {
+		adviceText = (TextView) findViewById(R.id.advice_text);
+		loadingBar = findViewById(R.id.loading_bar);
+		ImageView baldManImage = (ImageView) findViewById(R.id.bald_man_image);
+
+		baldManImage.setImageResource(adviceType.equals(AdvicesBusiness.DAILY_ADVICES) ? R.drawable.bald_man : R.drawable.bald_man_love);
+		baldManImage.setOnTouchListener(new OnSwipeTouchListener(this) {
 			@Override
-			public void onDatabaseSuccess(CircularList<String> object) {
-				if (!object.isEmpty()) {
-					advices = object;
-					updateAdvice();
-					hideLoader();
-				}
+			public void onSwipe() {
+				presenter.onSwipe();
 			}
 
 			@Override
-			public void onServerSuccess(CircularList<String> object) {
-				if (!object.isEmpty()) {
-					advices = object;
-					updateAdvice();
-				}
-				hideLoader();
-			}
-
-			@Override
-			public void onFailure(Exception result) {
-				if (advices.isEmpty()) {
-					adviceText.setText(R.string.no_internet);
-				}
-				hideLoader();
+			public void onTap() {
+				presenter.onTap();
 			}
 		});
 	}
 
-	private void updateAdvice() {
-		adviceText.setText(advices.get(adviceNumber));
-		sharedPreferences.edit().putInt(getPreferenceFieldByAdviceType(), adviceNumber).apply();
+	public void showNoInternetText() {
+		adviceText.setText(R.string.no_internet);
 	}
 
-	private void showLoader() {
+	public void showAdvice(String advice) {
+		adviceText.setText(advice);
+	}
+
+	public void showBotherSentence(String botherSentence) {
+		Toast.makeText(AdvicesActivity.this, botherSentence, Toast.LENGTH_SHORT).show();
+	}
+
+	public void showLoader() {
 		loadingBar.setVisibility(View.VISIBLE);
 		adviceText.setVisibility(View.GONE);
-		isGettingAdvices = true;
 	}
 
-	private void hideLoader() {
+	public void hideLoader() {
 		loadingBar.setVisibility(View.GONE);
 		adviceText.setVisibility(View.VISIBLE);
-		isGettingAdvices = false;
 	}
 
-	private String getPreferenceFieldByAdviceType() {
-		return adviceType.equals(AdvicesBusiness.DAILY_ADVICES) ? DAILY_ADVICE_NUMBER : LOVE_ADVICE_NUMBER;
+	public boolean isAdviceLoading() {
+		return loadingBar.getVisibility() == View.VISIBLE;
 	}
+
 }
